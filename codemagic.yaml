@@ -1,26 +1,22 @@
 workflows:
-  ios-workflow:
-    name: iOS Build Workflow
+  ios-testflight:
+    name: MIANU iOS TestFlight Build
     max_build_duration: 60
     instance_type: mac_mini_m1
 
-    environment:
-      xcode: latest
-      cocoapods: default
+    integrations:
+      app_store_connect: "Agios App Store Key"
 
+    environment:
       vars:
         XCODE_PROJECT: "ios-app/MIANU.xcodeproj"
         XCODE_SCHEME: "MIANU"
         BUNDLE_ID: "com.mianu.paymentapp"
+        TEAM_ID: "XMBVV283C4"
+      xcode: latest
+      cocoapods: default
 
     scripts:
-      - name: Install dependencies
-        script: |
-          echo "Installing dependencies..."
-
-          # لو المشروع يستخدم CocoaPods:
-          # cd ios-app
-          # pod install
 
       - name: Automatic iOS code signing
         script: |
@@ -38,17 +34,18 @@ workflows:
           xcode-project use-profiles \
             --project "$XCODE_PROJECT"
 
-      - name: Build IPA
+      - name: Build and Sign IPA
         script: |
           xcode-project build-ipa \
             --project "$XCODE_PROJECT" \
-            --scheme "$XCODE_SCHEME"
+            --scheme "$XCODE_SCHEME" \
+            --archive-flags "DEVELOPMENT_TEAM=$TEAM_ID"
 
     artifacts:
       - build/ios/ipa/*.ipa
       - /tmp/xcodebuild_logs/*.log
 
     publishing:
-      email:
-        recipients:
-          - user@example.com
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: true
