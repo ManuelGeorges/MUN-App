@@ -8,13 +8,10 @@ workflows:
       xcode: latest
       cocoapods: default
 
-      ios_signing:
-        distribution_type: app_store
-        bundle_identifier: com.mianu.paymentapp
-
       vars:
         XCODE_PROJECT: "ios-app/MIANU.xcodeproj"
         XCODE_SCHEME: "MIANU"
+        BUNDLE_ID: "com.mianu.paymentapp"
 
     scripts:
       - name: Install dependencies
@@ -25,21 +22,17 @@ workflows:
           # cd ios-app
           # pod install
 
-      - name: Fetch signing certificate and provisioning profile
+      - name: Automatic iOS code signing
         script: |
           keychain initialize
 
           app-store-connect fetch-signing-files \
-            "com.mianu.paymentapp" \
+            "$BUNDLE_ID" \
             --type IOS_APP_STORE \
             --create
 
-      - name: Add certificates to keychain
-        script: |
           keychain add-certificates
 
-      - name: Set up code signing
-        script: |
           xcode-project use-profiles
 
       - name: Build IPA
