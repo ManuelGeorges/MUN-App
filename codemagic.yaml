@@ -33,7 +33,10 @@ workflows:
 
           keychain add-certificates
 
-          xcode-project use-profiles
+      - name: Apply signing to MIANU project
+        script: |
+          xcode-project use-profiles \
+            --project "$XCODE_PROJECT"
 
       - name: Build IPA
         script: |
