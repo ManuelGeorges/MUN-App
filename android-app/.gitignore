@@ -1,0 +1,11 @@
+# Gradle
+.gradle/
+build/
+
+# Android Studio / IntelliJ
+.idea/
+*.iml
+captures/
+
+# Machine-specific SDK path — must not be committed
+local.properties

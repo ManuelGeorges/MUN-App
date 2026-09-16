@@ -1,0 +1,82 @@
+name: iOS TestFlight Build & Deploy
+
+on:
+  push:
+    branches: [ master, main ]
+    paths:
+      - 'ios-app/**'
+      - '.github/workflows/ios-testflight.yml'
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    name: Build & Upload to TestFlight
+    runs-on: macos-14
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -switch /Applications/Xcode_15.4.app
+
+      - name: Verify Xcode Version
+        run: xcodebuild -version
+
+      - name: Install Apple Certificate and Provisioning Profile (if configured)
+        if: env.APPLE_CERTIFICATE_BASE64 != ''
+        env:
+          APPLE_CERTIFICATE_BASE64: ${{ secrets.APPLE_CERTIFICATE_BASE64 }}
+          APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+          PROVISIONING_PROFILE_BASE64: ${{ secrets.PROVISIONING_PROFILE_BASE64 }}
+          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
+        run: |
+          KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
+          echo -n "$APPLE_CERTIFICATE_BASE64" | base64 --decode -o $RUNNER_TEMP/build_cert.p12
+          echo -n "$PROVISIONING_PROFILE_BASE64" | base64 --decode -o $RUNNER_TEMP/profile.mobileprovision
+
+          security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+          security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+
+          security import $RUNNER_TEMP/build_cert.p12 -P "$APPLE_CERTIFICATE_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
+          security set-key-partition-list -S apple-tool:,apple: -s -k "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          cp $RUNNER_TEMP/profile.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
+
+      - name: Build Archive
+        run: |
+          cd ios-app
+          xcodebuild clean archive \
+            -project MIANU.xcodeproj \
+            -scheme MIANU \
+            -configuration Release \
+            -archivePath $RUNNER_TEMP/MIANU.xcarchive \
+            -destination "generic/platform=iOS" \
+            CODE_SIGN_STYLE=Automatic \
+            DEVELOPMENT_TEAM="${{ secrets.APPLE_DEVELOPMENT_TEAM }}"
+
+      - name: Export IPA
+        run: |
+          xcodebuild -exportArchive \
+            -archivePath $RUNNER_TEMP/MIANU.xcarchive \
+            -exportPath $RUNNER_TEMP/build \
+            -exportOptionsPlist ios-app/ExportOptions.plist
+
+      - name: Upload to TestFlight via altool
+        if: env.APP_STORE_CONNECT_KEY_ID != ''
+        env:
+          APP_STORE_CONNECT_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+          APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          APP_STORE_CONNECT_PRIVATE_KEY: ${{ secrets.APP_STORE_CONNECT_PRIVATE_KEY }}
+        run: |
+          mkdir -p ~/.appstoreconnect/private_keys
+          echo -n "$APP_STORE_CONNECT_PRIVATE_KEY" > ~/.appstoreconnect/private_keys/AuthKey_${APP_STORE_CONNECT_KEY_ID}.p8
+
+          xcrun altool --upload-app \
+            -f $RUNNER_TEMP/build/MIANU.ipa \
+            -t ios \
+            --apiKey "$APP_STORE_CONNECT_KEY_ID" \
+            --apiIssuer "$APP_STORE_CONNECT_ISSUER_ID"

@@ -1,0 +1,418 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		010101010101010101010001 /* MIANUApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020202020202020202020001 /* MIANUApp.swift */; };
+		010101010101010101010002 /* AppSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020202020202020202020002 /* AppSession.swift */; };
+		010101010101010101010003 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020202020202020202020003 /* Theme.swift */; };
+		010101010101010101010004 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020202020202020202020004 /* Config.swift */; };
+		010101010101010101010005 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020202020202020202020005 /* Models.swift */; };
+		010101010101010101010006 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020202020202020202020006 /* APIClient.swift */; };
+		010101010101010101010007 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020202020202020202020007 /* APIService.swift */; };
+		010101010101010101010008 /* NFCReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020202020202020202020008 /* NFCReader.swift */; };
+		010101010101010101010009 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020202020202020202020009 /* Components.swift */; };
+		010101010101010101010010 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020202020202020202020010 /* LoginView.swift */; };
+		010101010101010101010011 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020202020202020202020011 /* MainTabView.swift */; };
+		010101010101010101010012 /* AttendanceScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020202020202020202020012 /* AttendanceScanView.swift */; };
+		010101010101010101010013 /* LocationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020202020202020202020013 /* LocationsView.swift */; };
+		010101010101010101010014 /* MealScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020202020202020202020014 /* MealScanView.swift */; };
+		010101010101010101010015 /* AccessScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020202020202020202020015 /* AccessScanView.swift */; };
+		010101010101010101010016 /* DashboardViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020202020202020202020016 /* DashboardViews.swift */; };
+		010101010101010101010017 /* UsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020202020202020202020017 /* UsersView.swift */; };
+		010101010101010101010018 /* TeamsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020202020202020202020018 /* TeamsView.swift */; };
+		010101010101010101010019 /* HallsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020202020202020202020019 /* HallsView.swift */; };
+		010101010101010101010020 /* BroadcastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020202020202020202020020 /* BroadcastView.swift */; };
+		010101010101010101010021 /* ReportsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020202020202020202020021 /* ReportsView.swift */; };
+		010101010101010101010022 /* AvailabilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020202020202020202020022 /* AvailabilityView.swift */; };
+		010101010101010101010023 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020202020202020202020023 /* SettingsView.swift */; };
+		010101010101010101010024 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 020202020202020202020024 /* Assets.xcassets */; };
+		010101010101010101010025 /* CoreNFC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 030303030303030303030001 /* CoreNFC.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		030303030303030303030001 /* CoreNFC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreNFC.framework; path = System/Library/Frameworks/CoreNFC.framework; sourceTree = SDKROOT; };
+		040404040404040404040001 /* MIANU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MIANU.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		020202020202020202020001 /* MIANUApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIANUApp.swift; sourceTree = "<group>"; };
+		020202020202020202020002 /* AppSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSession.swift; sourceTree = "<group>"; };
+		020202020202020202020003 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		020202020202020202020004 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		020202020202020202020005 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		020202020202020202020006 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		020202020202020202020007 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		020202020202020202020008 /* NFCReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFCReader.swift; sourceTree = "<group>"; };
+		020202020202020202020009 /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
+		020202020202020202020010 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		020202020202020202020011 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		020202020202020202020012 /* AttendanceScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceScanView.swift; sourceTree = "<group>"; };
+		020202020202020202020013 /* LocationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsView.swift; sourceTree = "<group>"; };
+		020202020202020202020014 /* MealScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealScanView.swift; sourceTree = "<group>"; };
+		020202020202020202020015 /* AccessScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessScanView.swift; sourceTree = "<group>"; };
+		020202020202020202020016 /* DashboardViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViews.swift; sourceTree = "<group>"; };
+		020202020202020202020017 /* UsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersView.swift; sourceTree = "<group>"; };
+		020202020202020202020018 /* TeamsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsView.swift; sourceTree = "<group>"; };
+		020202020202020202020019 /* HallsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HallsView.swift; sourceTree = "<group>"; };
+		020202020202020202020020 /* BroadcastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BroadcastView.swift; sourceTree = "<group>"; };
+		020202020202020202020021 /* ReportsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsView.swift; sourceTree = "<group>"; };
+		020202020202020202020022 /* AvailabilityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityView.swift; sourceTree = "<group>"; };
+		020202020202020202020023 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		020202020202020202020024 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		020202020202020202020025 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		020202020202020202020026 /* MIANU.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MIANU.entitlements; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		050505050505050505050001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				010101010101010101010025 /* CoreNFC.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		060606060606060606060001 = {
+			isa = PBXGroup;
+			children = (
+				060606060606060606060002 /* MIANU */,
+				060606060606060606060003 /* Products */,
+				060606060606060606060004 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		060606060606060606060002 /* MIANU */ = {
+			isa = PBXGroup;
+			children = (
+				060606060606060606060005 /* App */,
+				060606060606060606060006 /* Core */,
+				060606060606060606060007 /* Models */,
+				060606060606060606060008 /* Services */,
+				060606060606060606060009 /* Components */,
+				060606060606060606060010 /* Views */,
+				020202020202020202020024 /* Assets.xcassets */,
+				020202020202020202020025 /* Info.plist */,
+				020202020202020202020026 /* MIANU.entitlements */,
+			);
+			path = MIANU;
+			sourceTree = "<group>";
+		};
+		060606060606060606060005 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				020202020202020202020001 /* MIANUApp.swift */,
+				020202020202020202020002 /* AppSession.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		060606060606060606060006 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				020202020202020202020003 /* Theme.swift */,
+				020202020202020202020004 /* Config.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		060606060606060606060007 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				020202020202020202020005 /* Models.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		060606060606060606060008 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				020202020202020202020006 /* APIClient.swift */,
+				020202020202020202020007 /* APIService.swift */,
+				020202020202020202020008 /* NFCReader.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		060606060606060606060009 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				020202020202020202020009 /* Components.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		060606060606060606060010 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				020202020202020202020010 /* LoginView.swift */,
+				020202020202020202020011 /* MainTabView.swift */,
+				020202020202020202020012 /* AttendanceScanView.swift */,
+				020202020202020202020013 /* LocationsView.swift */,
+				020202020202020202020014 /* MealScanView.swift */,
+				020202020202020202020015 /* AccessScanView.swift */,
+				020202020202020202020016 /* DashboardViews.swift */,
+				020202020202020202020017 /* UsersView.swift */,
+				020202020202020202020018 /* TeamsView.swift */,
+				020202020202020202020019 /* HallsView.swift */,
+				020202020202020202020020 /* BroadcastView.swift */,
+				020202020202020202020021 /* ReportsView.swift */,
+				020202020202020202020022 /* AvailabilityView.swift */,
+				020202020202020202020023 /* SettingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		060606060606060606060003 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				040404040404040404040001 /* MIANU.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		060606060606060606060004 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				030303030303030303030001 /* CoreNFC.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		070707070707070707070001 /* MIANU */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 080808080808080808080001 /* Build configuration list for PBXNativeTarget "MIANU" */;
+			buildPhases = (
+				090909090909090909090001 /* Sources */,
+				050505050505050505050001 /* Frameworks */,
+				101010101010101010100001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MIANU;
+			productName = MIANU;
+			productReference = 040404040404040404040001 /* MIANU.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		111111111111111111110001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					070707070707070707070001 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = 080808080808080808080002 /* Build configuration list for PBXProject "MIANU" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 060606060606060606060001;
+			productRefGroup = 060606060606060606060003 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				070707070707070707070001 /* MIANU */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		101010101010101010100001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				010101010101010101010024 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		090909090909090909090001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				010101010101010101010001 /* MIANUApp.swift in Sources */,
+				010101010101010101010002 /* AppSession.swift in Sources */,
+				010101010101010101010003 /* Theme.swift in Sources */,
+				010101010101010101010004 /* Config.swift in Sources */,
+				010101010101010101010005 /* Models.swift in Sources */,
+				010101010101010101010006 /* APIClient.swift in Sources */,
+				010101010101010101010007 /* APIService.swift in Sources */,
+				010101010101010101010008 /* NFCReader.swift in Sources */,
+				010101010101010101010009 /* Components.swift in Sources */,
+				010101010101010101010010 /* LoginView.swift in Sources */,
+				010101010101010101010011 /* MainTabView.swift in Sources */,
+				010101010101010101010012 /* AttendanceScanView.swift in Sources */,
+				010101010101010101010013 /* LocationsView.swift in Sources */,
+				010101010101010101010014 /* MealScanView.swift in Sources */,
+				010101010101010101010015 /* AccessScanView.swift in Sources */,
+				010101010101010101010016 /* DashboardViews.swift in Sources */,
+				010101010101010101010017 /* UsersView.swift in Sources */,
+				010101010101010101010018 /* TeamsView.swift in Sources */,
+				010101010101010101010019 /* HallsView.swift in Sources */,
+				010101010101010101010020 /* BroadcastView.swift in Sources */,
+				010101010101010101010021 /* ReportsView.swift in Sources */,
+				010101010101010101010022 /* AvailabilityView.swift in Sources */,
+				010101010101010101010023 /* SettingsView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		121212121212121212120001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		121212121212121212120002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		121212121212121212120003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MIANU/MIANU.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = MIANU/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mianu.paymentapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		121212121212121212120004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MIANU/MIANU.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = MIANU/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mianu.paymentapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		080808080808080808080001 /* Build configuration list for PBXNativeTarget "MIANU" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				121212121212121212120003 /* Debug */,
+				121212121212121212120004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		080808080808080808080002 /* Build configuration list for PBXProject "MIANU" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				121212121212121212120001 /* Debug */,
+				121212121212121212120002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 111111111111111111110001 /* Project object */;
+}

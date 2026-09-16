@@ -1,0 +1,41 @@
+# Node / Cloudflare
+node_modules/
+.wrangler/
+npm-debug.log*
+
+# Root verification screenshots
+/screen_*.png
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Environment & local state
+.env
+.env.local
+backend/mianu.db
+*.db
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Android / Gradle
+.gradle/
+**/build/
+local.properties
+*.iml
+captures/
+
+# iOS / Xcode
+xcuserdata/
+*.xcworkspace
+!MIANU.xcodeproj/project.xcworkspace
+DerivedData/
+.build/
+*.xcuserstate

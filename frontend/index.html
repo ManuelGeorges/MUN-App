@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MIANU-SM IV — Operations Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // The theme lives in styles.css as CSS custom properties so light and dark come from one
+      // source. This maps them onto Tailwind utilities — without it `bg-surface`, `text-fg` and the
+      // rest are undefined classes that silently render as nothing.
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              surface: 'rgb(var(--surface) / <alpha-value>)',
+              'surface-raised': 'rgb(var(--surface-raised) / <alpha-value>)',
+              'surface-sunken': 'rgb(var(--surface-sunken) / <alpha-value>)',
+              'surface-overlay': 'rgb(var(--surface-overlay) / <alpha-value>)',
+              'surface-hover': 'rgb(var(--surface-hover) / <alpha-value>)',
+              subtle: 'rgb(var(--border) / <alpha-value>)',
+              fg: 'rgb(var(--fg) / <alpha-value>)',
+              'fg-muted': 'rgb(var(--fg-muted) / <alpha-value>)',
+              accent: 'rgb(var(--accent) / <alpha-value>)',
+              success: 'rgb(var(--success) / <alpha-value>)',
+              danger: 'rgb(var(--danger) / <alpha-value>)',
+              warning: 'rgb(var(--warning) / <alpha-value>)',
+              info: 'rgb(var(--info) / <alpha-value>)',
+            },
+            borderColor: { DEFAULT: 'rgb(var(--border))' },
+            fontFamily: {
+              sans: ['Inter', 'system-ui', 'sans-serif'],
+              display: ['Sora', 'Inter', 'system-ui', 'sans-serif'],
+            },
+            boxShadow: {
+              card: '0 1px 2px rgb(0 0 0 / 0.04), 0 4px 12px rgb(0 0 0 / 0.05)',
+              raised: '0 2px 4px rgb(0 0 0 / 0.05), 0 12px 28px rgb(0 0 0 / 0.08)',
+              glow: '0 0 0 1px rgb(var(--accent) / 0.25), 0 6px 24px rgb(var(--accent) / 0.28)',
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="text-fg relative min-h-screen">
+    <div class="app-ambient"></div>
+
+    <!-- Sign-in gate. Hidden once a session exists. -->
+    <div id="auth-gate" class="min-h-screen flex items-center justify-center p-6">
+      <form id="login-form" class="glass w-full max-w-sm rounded-2xl p-8 shadow-raised">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-11 h-11 rounded-xl bg-accent text-white grid place-items-center font-display font-bold shadow-glow">M</div>
+          <div>
+            <h1 class="font-display font-bold text-lg leading-tight">MIANU-SM IV</h1>
+            <p class="text-xs text-fg-muted">Operations dashboard</p>
+          </div>
+        </div>
+
+        <label for="login-username" class="block text-xs font-semibold uppercase tracking-wider text-fg-muted mb-1.5">Email / Username</label>
+        <input id="login-username" name="username" autocomplete="username" required
+               class="w-full rounded-xl bg-surface border border-subtle px-3.5 py-2.5 mb-4 outline-none focus:border-accent focus:ring-2 focus:ring-accent/25 transition" />
+
+        <label for="login-password" class="block text-xs font-semibold uppercase tracking-wider text-fg-muted mb-1.5">Password</label>
+        <input id="login-password" name="password" type="password" autocomplete="current-password" required
+               class="w-full rounded-xl bg-surface border border-subtle px-3.5 py-2.5 mb-1 outline-none focus:border-accent focus:ring-2 focus:ring-accent/25 transition" />
+        <p class="text-[11px] text-fg-muted mb-5">Live Cloudflare edge authentication.</p>
+
+        <button type="submit" id="login-submit"
+                class="w-full rounded-xl bg-accent text-white font-semibold py-2.5 shadow-glow hover:brightness-110 active:brightness-95 transition disabled:opacity-60">
+          Sign in
+        </button>
+
+        <p id="login-error" class="hidden mt-4 text-sm text-danger"></p>
+
+        <div class="mt-6 pt-5 border-t border-subtle">
+          <p class="text-[11px] uppercase tracking-wider font-semibold text-fg-muted mb-2">Conference accounts</p>
+          <div class="flex flex-wrap gap-1.5">
+            <button type="button" data-demo="admin@mianu.org" data-pwd="Admin@2026" class="demo-chip">admin</button>
+            <button type="button" data-demo="ops@mianu.org" data-pwd="Organizer@2026" class="demo-chip">organizer</button>
+            <button type="button" data-demo="alex@mianu.org" data-pwd="Delegate@2026" class="demo-chip">delegate</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- App shell -->
+    <div id="app-shell" class="hidden min-h-screen flex-col">
+      <header class="sticky top-0 z-20 glass border-b border-subtle">
+        <div class="max-w-[1600px] mx-auto px-4 lg:px-8 h-16 flex items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <button id="nav-toggle" class="lg:hidden p-2 -ml-2 rounded-lg hover:bg-surface-hover" aria-label="Toggle navigation">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+            </button>
+            <div class="w-9 h-9 rounded-lg bg-accent text-white grid place-items-center font-display font-bold">M</div>
+            <div class="leading-tight">
+              <h1 class="font-display font-bold tracking-tight">MIANU-SM IV Operations</h1>
+              <p id="shell-subtitle" class="text-xs text-fg-muted"></p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <span id="session-role" class="hidden sm:inline text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full"></span>
+            <div class="flex items-center gap-2.5">
+              <div id="session-avatar" class="w-8 h-8 rounded-full bg-accent/15 text-accent grid place-items-center text-xs font-bold"></div>
+              <span id="session-name" class="text-sm font-medium hidden sm:inline"></span>
+            </div>
+            <button id="sign-out" class="text-sm text-fg-muted hover:text-danger transition px-2 py-1 rounded-lg">Sign out</button>
+          </div>
+        </div>
+      </header>
+
+      <div class="flex-1 w-full max-w-[1600px] mx-auto px-4 lg:px-8 py-6 flex gap-6">
+        <nav id="sidebar" class="hidden lg:flex flex-col gap-1 w-56 shrink-0"></nav>
+        <main id="view" class="flex-1 min-w-0" aria-live="polite"></main>
+      </div>
+    </div>
+
+    <div id="toast-host" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 items-end pointer-events-none"></div>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
