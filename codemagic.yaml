@@ -3,44 +3,44 @@ workflows:
     name: iOS Build Workflow
     max_build_duration: 60
     instance_type: mac_mini_m1
+
     environment:
-      vars:
-        XCODE_PROJECT: "ios-app/MIANU.xcodeproj"
-        XCODE_SCHEME: "MIANU" # تأكد من اسم الـ Scheme في Xcode
-        APP_ID: "com.mianu.paymentapp" # تم التغيير من org إلى com
       xcode: latest
       cocoapods: default
+
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.mianu.paymentapp
+
+      vars:
+        XCODE_PROJECT: "ios-app/MIANU.xcodeproj"
+        XCODE_SCHEME: "MIANU"
+
     scripts:
       - name: Install dependencies
         script: |
-          # إذا كنت تستخدم CocoaPods، فك تشفير هذا السطر:
-          # cd ios-app && pod install
           echo "Installing dependencies..."
+
+          # لو المشروع يستخدم CocoaPods:
+          # cd ios-app
+          # pod install
+
       - name: Set up code signing
         script: |
-          # هذه الخطوة تتطلب إعداد Certificates و Profiles في واجهة Codemagic
-          # أو استخدام App Store Connect API
           keychain initialize
-          # app-store-connect fetch-signing-files $(APP_ID) --project-path $(XCODE_PROJECT)
-          # keychain add-certificates
-      - name: Build iOS app
+          xcode-project use-profiles
+
+      - name: Build IPA
         script: |
-          xcodebuild build \
-            -project "$XCODE_PROJECT" \
-            -scheme "$XCODE_SCHEME" \
-            -configuration Release \
-            -sdk iphoneos \
-            -destination 'generic/platform=iOS'
-      - name: Package for App Store (IPA)
-        script: |
-          xcodebuild -exportArchive \
-            -archivePath build/ios/MIANU.xcarchive \
-            -exportOptionsPlist ios-app/ExportOptions.plist \
-            -exportPath build/ios/ipa
+          xcode-project build-ipa \
+            --project "$XCODE_PROJECT" \
+            --scheme "$XCODE_SCHEME"
+
     artifacts:
       - build/ios/ipa/*.ipa
       - /tmp/xcodebuild_logs/*.log
+
     publishing:
       email:
         recipients:
-          - user@example.com # ضع إيميلك هنا ليصلك التنبيه
+          - user@example.com
