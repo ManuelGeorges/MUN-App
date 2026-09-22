@@ -17,10 +17,20 @@ workflows:
       cocoapods: default
 
     scripts:
+      - name: Increment Build Number
+        script: |
+          cd ios-app
+          agvtool new-version -all $(date +%s)
+
       - name: Automatic iOS code signing
         script: |
+          # Initialize a clean keychain
           keychain initialize
 
+          # Remove any stale/cached provisioning profiles from the build machine
+          find ~/Library -name "*.mobileprovision" -delete
+
+          # Fetch (or create) signing files for the app
           app-store-connect fetch-signing-files \
             "$BUNDLE_ID" \
             --type IOS_APP_STORE \
