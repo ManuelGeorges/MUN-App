@@ -5,7 +5,7 @@ workflows:
     instance_type: mac_mini_m1
 
     integrations:
-      app_store_connect: "Agios App Store Key"
+      app_store_connect: "Mianu payment app"
 
     environment:
       vars:
