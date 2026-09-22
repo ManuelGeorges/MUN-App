@@ -17,28 +17,31 @@ workflows:
       cocoapods: default
 
     scripts:
+
       - name: Increment Build Number
         script: |
           cd ios-app
           agvtool new-version -all $(date +%s)
 
-      - name: Automatic iOS code signing
+      - name: Automatic iOS Code Signing
         script: |
           # Initialize a clean keychain
           keychain initialize
 
-          # Remove any stale/cached provisioning profiles from the build machine
+          # Remove stale provisioning profiles
           find ~/Library -name "*.mobileprovision" -delete
 
-          # Fetch (or create) signing files for the app
+          # Fetch or create App Store signing certificate
+          # and provisioning profile for MIANU
           app-store-connect fetch-signing-files \
             "$BUNDLE_ID" \
             --type IOS_APP_STORE \
             --create
 
+          # Install the signing certificate into the keychain
           keychain add-certificates
 
-      - name: Apply signing to MIANU project
+      - name: Apply Signing Profiles
         script: |
           xcode-project use-profiles \
             --project "$XCODE_PROJECT"
