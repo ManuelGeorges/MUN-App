@@ -21,6 +21,22 @@ workflows:
       cocoapods: default
 
     scripts:
+      - name: Generate App Icons
+        script: |
+          # Use sips (built-in macOS tool) to generate all required icon sizes from logo.png
+          SOURCE_IMAGE="logo.png"
+          ICONSET_DIR="ios-app/MIANU/Assets.xcassets/AppIcon.appiconset"
+          
+          echo "Generating icons from $SOURCE_IMAGE..."
+          
+          # List of sizes needed for iOS (square pixels)
+          declare -a sizes=("20" "29" "40" "58" "60" "76" "80" "87" "120" "152" "167" "180" "1024")
+          
+          for size in "${sizes[@]}"; do
+              sips -z $size $size "$SOURCE_IMAGE" --out "$ICONSET_DIR/Icon-$size.png"
+          done
+          
+          echo "Icons generated successfully."
 
       - name: Increment Build Number
         script: |
